@@ -1,0 +1,33 @@
+ <footer class="main-footer">
+     <div class="pull-right d-none d-sm-inline-block">
+         <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
+             <li class="nav-item">
+                 <a class="nav-link" href="javascript:void(0)">FAQ</a>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link" href="#">Purchase Now</a>
+             </li>
+         </ul>
+     </div>
+     &copy; {{ now()->format('Y') }} <a href="#">Psd to Html Expert</a>. All Rights Reserved.
+ </footer>
+
+ </div>
+ <!-- ./wrapper -->
+
+
+ <!-- Vendor JS -->
+ <script src="{{ asset('backend/js/vendors.min.js') }}"></script>
+ <script src="{{ asset('assets/icons/feather-icons/feather.min.js') }}"></script>
+ <script src="{{ asset('assets/vendor_components/easypiechart/dist/jquery.easypiechart.js') }}"></script>
+ <script src="{{ asset('assets/vendor_components/apexcharts-bundle/irregular-data-series.js') }}"></script>
+ <script src="{{ asset('assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
+
+ <!-- Sunny Admin App -->
+ <script src="{{ asset('backend/js/template.js') }}"></script>
+ <script src="{{ asset('backend/js/pages/dashboard.js') }}"></script>
+
+
+ </body>
+
+ </html>
