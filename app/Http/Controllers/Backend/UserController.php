@@ -43,9 +43,7 @@ class UserController extends Controller
             'message' => 'User created successfully',
             'alert-type' => 'success',
         ];
-        return redirect()
-            ->route('user.index')
-            ->with($notification);
+        return redirect()->route('user.index')->with($notification);
     }
 
     /**
@@ -61,7 +59,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.user.update', compact('user'));
     }
 
     /**
@@ -69,7 +68,21 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'user_type' => 'required|string',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+        ]);
+
+        $user->update($validatedData);
+
+        $notification = [
+            'message' => 'User updated successfully',
+            'alert-type' => 'info',
+        ];
+        return redirect()->route('user.index')->with($notification);
     }
 
     /**
