@@ -25,5 +25,7 @@ Route::middleware([
     'verified',
 ])->prefix('users')->group(function () {
     Route::get('/view', [UserController::class, 'index'])->name('user.index');
+    Route::get('/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/create', [UserController::class, 'store'])->name('user.store');
 });
 

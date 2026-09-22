@@ -34,7 +34,7 @@
                   </a>
                   <ul class="treeview-menu">
                       <li><a href="{{ route('user.index') }}"><i class="ti-more"></i>View User</a></li>
-                      <li><a href="calendar.html"><i class="ti-more"></i>Add User</a></li>
+                      <li><a href="{{ route('user.create') }}"><i class="ti-more"></i>Add User</a></li>
                   </ul>
               </li>
 
