@@ -47,14 +47,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
@@ -90,6 +82,11 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::findOrFail($id)->delete();
+        $notification = [
+            'message' => 'User deleted successfully',
+            'alert-type' => 'error',
+        ];
+        return redirect()->route('user.index')->with($notification);
     }
 }

@@ -38,10 +38,15 @@
                                             <td>{{ $user->user_type }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td><a href="{{ route('user.edit', $user->id) }}" class="btn btn-info"><i class="fa fa-edit "></i> Edit</a>
+                                            <td><a href="{{ route('user.edit', $user->id) }}" class="btn btn-info"><i
+                                                        class="fa fa-edit "></i> Edit</a>
                                             </td>
-                                            <td><a href="#" class="btn btn-danger"><i class="fa fa-trash"></i>
-                                                    Delete</a></td>
+                                            <td>
+                                                <a href="{{ route('user.destroy', $user->id) }}"
+                                                    class="btn btn-danger delete-confirm" id="delete">
+                                                    <i class="fa fa-trash"></i> Delete
+                                                </a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
