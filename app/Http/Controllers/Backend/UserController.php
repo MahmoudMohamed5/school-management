@@ -38,9 +38,14 @@ class UserController extends Controller
         ]);
 
         User::create($request->all());
+
+        $notification = [
+            'message' => 'User created successfully',
+            'alert-type' => 'success',
+        ];
         return redirect()
             ->route('user.index')
-            ->with('success', 'User created successfully');
+            ->with($notification);
     }
 
     /**
