@@ -38,5 +38,7 @@ Route::middleware([
             Route::get('/edit', 'edit')->name('profile.edit');
             Route::put('/update', 'update')->name('profile.update');
             Route::get('/remove/image', 'removeImage')->name('profile.image.delete');
+            Route::get('/edit/password', 'editPassword')->name('profile.password.edit');
+            Route::put('/update/password', 'updatePassword')->name('profile.password.update');
         });
 });

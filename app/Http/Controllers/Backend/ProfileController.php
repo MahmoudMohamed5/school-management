@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -17,7 +18,7 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = Auth::user();
-        return view('admin.profile.edit' ,compact('user'));
+        return view('admin.profile.edit', compact('user'));
     }
 
     public function update(Request $request)
@@ -70,5 +71,37 @@ class ProfileController extends Controller
         ];
 
         return redirect()->back()->with($notification);
+    }
+
+    // change password
+    public function editPassword()
+    {
+        return view('admin.profile.edit_password');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $validate = $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
+        ]);
+
+        $user = Auth::user();
+        if (Hash::check($request->current_password, $user->password)) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+            
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('login');
+        } else {
+            $notification = [
+                'message' => 'Current Password is not match',
+                'alert-type' => 'error',
+            ];
+            return redirect()->back()->with($notification);
+        }
     }
 }
