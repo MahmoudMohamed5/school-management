@@ -19,9 +19,14 @@
     <link rel="stylesheet" href="{{ asset('backend/css/skin_color.css') }}">
 
     <!-- toastr -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
 </head>
+@php
+   $user = DB::table('users')
+        ->where('id', Auth::user()->id)
+        ->first();
+@endphp
 
 <body class="hold-transition dark-skin sidebar-mini theme-primary fixed">
 
@@ -145,7 +150,8 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0"
                                 data-toggle="dropdown" title="User">
-                                <img src="{{ asset('backend/images/avatar/1.jpg') }}" alt="">
+                                <img src="{{ !empty($user->image) ? url($user->image) : url('upload/no_image.jpg') }}"
+                                    alt="">
                             </a>
                             <ul class="dropdown-menu animated flipInX">
                                 <li class="user-body">
@@ -153,7 +159,8 @@
                                         Profile</a>
                                     <a class="dropdown-item" href="#"><i class="ti-wallet text-muted mr-2"></i> My
                                         Wallet</a>
-                                    <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i>
+                                    <a class="dropdown-item" href="#"><i
+                                            class="ti-settings text-muted mr-2"></i>
                                         Settings</a>
                                     <div class="dropdown-divider"></div>
                                     <form method="POST" action="{{ route('logout') }}" id="logout-form">

@@ -32,17 +32,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $key => $user)
+                                    @foreach ($users as $key => $value)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $user->user_type }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td><a href="{{ route('user.edit', $user->id) }}" class="btn btn-info"><i
+                                            <td>{{ $value->user_type }}</td>
+                                            <td>{{ $value->name }}</td>
+                                            <td>{{ $value->email }}</td>
+                                            <td><a href="{{ route('user.edit', $value->id) }}" class="btn btn-info"><i
                                                         class="fa fa-edit "></i> Edit</a>
                                             </td>
                                             <td>
-                                                <a href="{{ route('user.destroy', $user->id) }}"
+                                                <a href="{{ route('user.destroy', $value->id) }}"
                                                     class="btn btn-danger delete-confirm" id="delete">
                                                     <i class="fa fa-trash"></i> Delete
                                                 </a>
